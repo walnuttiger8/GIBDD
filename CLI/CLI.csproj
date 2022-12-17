@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{99106A56-2625-492F-B801-2B6545AE5B9D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SB_UTILS</RootNamespace>
-    <AssemblyName>SB_UTILS</AssemblyName>
+    <ProjectGuid>{FAF09B3B-F42A-48AC-BD7B-6CA77220D9FC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CLI</RootNamespace>
+    <AssemblyName>CLI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,9 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Funcs.cs" />
-    <Compile Include="NFoldConverter.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\REG_MARK_LIB\REG_MARK_LIB.csproj">
+      <Project>{f06e6eb7-01cb-4a07-9590-51ef4efc6c5b}</Project>
+      <Name>REG_MARK_LIB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SB_UTILS\SB_UTILS.csproj">
+      <Project>{99106a56-2625-492f-b801-2b6545ae5b9d}</Project>
+      <Name>SB_UTILS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

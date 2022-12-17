@@ -1140,12 +1140,22 @@ namespace VIN_LIB
             }
         }
 
+        /// <summary>
+        /// данный метод возвращает страну, в которой было изготовлено транспортное средство. 
+        /// </summary>
+        /// <param name="vin">ВИН номер транспортного средства</param>
+        /// <returns>Страна, в которой было изготовлено транспортное средство</returns>
         public string GetVINCountry(string vin)
         {
             var wmi = vin.Substring(0, 2);
             return _WMI_DATA[wmi];
         }
 
+        /// <summary>
+        /// данный метод возвращает год, в который было выпущено транспортное средство.
+        /// </summary>
+        /// <param name="vin">ВИН номер транспортного средства</param>
+        /// <returns>Год, в который было выпущено транспортное средство</returns>
         public int GetTransportYear(string vin)
         {
             var years = Funcs.Filter((x) => x <= DateTime.Now.Year, _VIS_YEAR_DATA[vin[_VIS_YEAR_POSITION]]);
