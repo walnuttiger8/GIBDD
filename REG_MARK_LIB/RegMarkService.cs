@@ -135,6 +135,63 @@ namespace REG_MARK_LIB
 
         }
 
+        /// <summary>
+        /// данный метод принимает номерной знак в формате a999aa999 (латинскими буквами) и выдает следующий номер в данной серии или создает следующую серию
+        /// </summary>
+        /// <param name="mark"></param>
+        /// <returns></returns>
+        public static string GetNextMarkAfter(string mark)
+        {
+            var regNumber = ParseMark(mark);
+            regNumber++;
+            return regNumber.ToString();
+        }
+
+        /// <summary>
+        /// данный метод принимает номерной знак в формате a999aa999 (латинскими буквами) 
+        /// и выдает следующий номер в данной данном промежутке номеров rangeStart до rangeEnd (включая обе границы). 
+        /// Если нет возможности выдать следующий номер, необходимо вернуть сообщение “out of stock”.
+        /// </summary>
+        /// <param name="prevMark"></param>
+        /// <param name="rangeStart"></param>
+        /// <param name="rangeEnd"></param>
+        /// <returns></returns>
+        public static string GetNextMarkAfterInRange(string prevMark, string rangeStart, string rangeEnd)
+        {
+            var found = false;
+            var prevRegNumber = ParseMark(prevMark);
+            foreach (var mark in RegNumber.Range(ParseMark(rangeStart), ParseMark(rangeEnd))) {
+                if (found)
+                {
+                    return mark.ToString();
+                }
+                if (prevRegNumber == mark)
+                {
+                    found = true;
+                }
+            }
+            return "out of stock";
+        }
+
+        /// <summary>
+        /// данный метод принимает два номера в формате a999aa999 (латинскими буквами) и возвращает количество возможных номеров между ними (включая обе границы). 
+        /// Метод необходим, чтобы рассчитать оставшиеся свободные номера для региона.
+        /// </summary>
+        /// <param name="mark1"></param>
+        /// <param name="mark2"></param>
+        /// <returns></returns>
+        public static int GetCombinationsCountInRange(string mark1, string mark2)
+        {
+            var result = 0;
+
+            foreach (var _ in RegNumber.Range(ParseMark(mark1), ParseMark(mark2)))
+            {
+                result++;
+            }
+
+            return result;
+        }
+
         public static string TranslateMark(string mark)
         {
             if (Funcs.All(mark.Where(x => !char.IsDigit(x)).Select(x => _ALPHABET_TRANSLATE_MAP.ContainsKey(x))) == false)
@@ -154,12 +211,13 @@ namespace REG_MARK_LIB
             }));
         }
 
-        private static IEnumerator<char> IterateSeriesAlphebet(char start='a', char stop='x')
+        private static RegNumber ParseMark(string mark)
         {
-            for (int i = _SERIES_ALPHABET.IndexOf(start); i <= _SERIES_ALPHABET.IndexOf(stop); i++)
-            {
-                yield return _SERIES_ALPHABET[i];
-            }
+            var series = new RegNumberSeries(GetSeries(mark));
+            var number = new RegNumberNumber(int.Parse(GetNumber(mark)));
+            var regionCode = int.Parse(GetRegionCode(mark));
+
+            return new RegNumber(series, number, regionCode);
         }
 
         private static string GetSeries(string mark)

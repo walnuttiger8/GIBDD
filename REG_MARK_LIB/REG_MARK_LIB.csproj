@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="RegMarkService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegNumber.cs" />
+    <Compile Include="RegNumberNumber.cs" />
     <Compile Include="RegNumberSeries.cs" />
   </ItemGroup>
   <ItemGroup>
