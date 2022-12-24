@@ -35,7 +35,14 @@ namespace DESKTOP_APP.Views
             try
             {
                 var user = _authorizationService.Auth(login, password);
-                MessageBox.Show("Успешная авторизация!");
+
+                //MessageBox.Show("Успешная авторизация!");
+                //var view = new DriverView(new Guid("05DA1F47-39FA-4ADF-A824-004223E51CF8"));
+                //var view = new FineView(1);
+                //var view = new ExportFSSPView();
+                var view = new RegNumberView(1);
+                view.Show();
+                Close();
             }
             catch (UserNotFoundException)
             {
@@ -49,6 +56,11 @@ namespace DESKTOP_APP.Views
             {
                 MessageBox.Show("Неверный пароль");
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _authorizationService.Dispose();
         }
     }
 }

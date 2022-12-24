@@ -13,6 +13,23 @@
         <EntityTypeShape EntityType="GIBDDModel.Users" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="GIBDDModel.FK__Drivers__PhotoId__6383C8BA" ManuallyRouted="false" />
         <AssociationConnector Association="GIBDDModel.FK__RegionCod__Regio__6A30C649" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GIBDDModel.Fines" Width="1.5" PointX="3" PointY="9.75" />
+        <AssociationConnector Association="GIBDDModel.FK__Fines__PhotoId__05D8E0BE" />
+        <EntityTypeShape EntityType="GIBDDModel.FineStatuses" Width="1.5" PointX="3" PointY="14" />
+        <EntityTypeShape EntityType="GIBDDModel.FineStatusHistory" Width="1.5" PointX="5.25" PointY="10" />
+        <AssociationConnector Association="GIBDDModel.FK__FineStatu__FineI__114A936A" />
+        <AssociationConnector Association="GIBDDModel.FK__FineStatu__FineS__123EB7A3" />
+        <EntityTypeShape EntityType="GIBDDModel.CarColors" Width="1.5" PointX="6" PointY="14.625" />
+        <EntityTypeShape EntityType="GIBDDModel.RegNumbers" Width="1.5" PointX="10.5" PointY="3.875" />
+        <EntityTypeShape EntityType="GIBDDModel.TypeOfDrive" Width="1.5" PointX="6" PointY="7" />
+        <EntityTypeShape EntityType="GIBDDModel.Vehicles" Width="1.5" PointX="8.25" PointY="4.875" />
+        <AssociationConnector Association="GIBDDModel.FK__Vehicles__CarCol__29221CFB" />
+        <AssociationConnector Association="GIBDDModel.FK__Vehicles__Driver__282DF8C2" />
+        <AssociationConnector Association="GIBDDModel.FK__RegNumber__Regio__2FCF1A8A" />
+        <AssociationConnector Association="GIBDDModel.FK__RegNumber__Vehic__2EDAF651" />
+        <AssociationConnector Association="GIBDDModel.FK__Vehicles__TypeOf__2B0A656D" />
+        <EntityTypeShape EntityType="GIBDDModel.EngineTypes" Width="1.5" PointX="8.375" PointY="0.875" />
+        <AssociationConnector Association="GIBDDModel.FK__Vehicles__Engine__2A164134" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

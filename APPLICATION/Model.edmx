@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище GIBDDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище GIBDDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AuthorizationAttempts">
           <Key>
             <PropertyRef Name="Id" />
@@ -13,6 +13,20 @@
           <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PersonIdentity" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="AttemptDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarColors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="HexCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ColorName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsMetallic" Type="bit" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ColorNameEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Drivers">
           <Key>
@@ -31,6 +45,43 @@
           <Property Name="Email" Type="nvarchar" MaxLength="120" Nullable="false" />
           <Property Name="PhotoId" Type="int" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EngineTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LocalizedName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fines">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExternalId" Type="int" Nullable="false" />
+          <Property Name="CarNum" Type="nvarchar" MaxLength="10" />
+          <Property Name="LicenseNum" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="PhotoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FineStatuses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SendToFSSP" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FineStatusHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="FineId" Type="int" Nullable="false" />
+          <Property Name="FineStatusId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Photos">
           <Key>
@@ -60,6 +111,25 @@
           <Property Name="OKATOCode" Type="nvarchar" MaxLength="10" />
           <Property Name="ISO3166_2Code" Type="nvarchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="RegNumbers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleId" Type="int" Nullable="false" />
+          <Property Name="RegionCodeCodeId" Type="int" Nullable="false" />
+          <Property Name="Series" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfDrive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
@@ -67,6 +137,22 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Vehicles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VINCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="int" Nullable="false" />
+          <Property Name="CarColorId" Type="int" Nullable="false" />
+          <Property Name="EngineTypeId" Type="int" Nullable="false" />
+          <Property Name="TypeOfDriveId" Type="int" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" />
         </EntityType>
         <Association Name="FK__Drivers__PhotoId__6383C8BA">
@@ -78,6 +164,42 @@
             </Principal>
             <Dependent Role="Drivers">
               <PropertyRef Name="PhotoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Fines__PhotoId__05D8E0BE">
+          <End Role="Photos" Type="Self.Photos" Multiplicity="1" />
+          <End Role="Fines" Type="Self.Fines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fines">
+              <PropertyRef Name="PhotoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FineStatu__FineI__114A936A">
+          <End Role="Fines" Type="Self.Fines" Multiplicity="1" />
+          <End Role="FineStatusHistory" Type="Self.FineStatusHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FineStatusHistory">
+              <PropertyRef Name="FineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FineStatu__FineS__123EB7A3">
+          <End Role="FineStatuses" Type="Self.FineStatuses" Multiplicity="1" />
+          <End Role="FineStatusHistory" Type="Self.FineStatusHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FineStatuses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FineStatusHistory">
+              <PropertyRef Name="FineStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -93,24 +215,139 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__RegNumber__Regio__2FCF1A8A">
+          <End Role="RegionCodeCodes" Type="Self.RegionCodeCodes" Multiplicity="1" />
+          <End Role="RegNumbers" Type="Self.RegNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegionCodeCodes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegNumbers">
+              <PropertyRef Name="RegionCodeCodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegNumber__Vehic__2EDAF651">
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
+          <End Role="RegNumbers" Type="Self.RegNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegNumbers">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vehicles__CarCol__29221CFB">
+          <End Role="CarColors" Type="Self.CarColors" Multiplicity="1" />
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarColors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="CarColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vehicles__Driver__282DF8C2">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="DriverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vehicles__Engine__2A164134">
+          <End Role="EngineTypes" Type="Self.EngineTypes" Multiplicity="1" />
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EngineTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="EngineTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vehicles__TypeOf__2B0A656D">
+          <End Role="TypeOfDrive" Type="Self.TypeOfDrive" Multiplicity="1" />
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfDrive">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="TypeOfDriveId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище GIBDDModelContainer">
           <EntitySet Name="AuthorizationAttempts" EntityType="Self.AuthorizationAttempts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarColors" EntityType="Self.CarColors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Drivers" EntityType="Self.Drivers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EngineTypes" EntityType="Self.EngineTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fines" EntityType="Self.Fines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FineStatuses" EntityType="Self.FineStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FineStatusHistory" EntityType="Self.FineStatusHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Photos" EntityType="Self.Photos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegionCodeCodes" EntityType="Self.RegionCodeCodes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegionCodes" EntityType="Self.RegionCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegNumbers" EntityType="Self.RegNumbers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfDrive" EntityType="Self.TypeOfDrive" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Drivers__PhotoId__6383C8BA" Association="Self.FK__Drivers__PhotoId__6383C8BA">
             <End Role="Photos" EntitySet="Photos" />
             <End Role="Drivers" EntitySet="Drivers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Fines__PhotoId__05D8E0BE" Association="Self.FK__Fines__PhotoId__05D8E0BE">
+            <End Role="Photos" EntitySet="Photos" />
+            <End Role="Fines" EntitySet="Fines" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FineStatu__FineI__114A936A" Association="Self.FK__FineStatu__FineI__114A936A">
+            <End Role="Fines" EntitySet="Fines" />
+            <End Role="FineStatusHistory" EntitySet="FineStatusHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FineStatu__FineS__123EB7A3" Association="Self.FK__FineStatu__FineS__123EB7A3">
+            <End Role="FineStatuses" EntitySet="FineStatuses" />
+            <End Role="FineStatusHistory" EntitySet="FineStatusHistory" />
           </AssociationSet>
           <AssociationSet Name="FK__RegionCod__Regio__6A30C649" Association="Self.FK__RegionCod__Regio__6A30C649">
             <End Role="RegionCodes" EntitySet="RegionCodes" />
             <End Role="RegionCodeCodes" EntitySet="RegionCodeCodes" />
           </AssociationSet>
+          <AssociationSet Name="FK__RegNumber__Regio__2FCF1A8A" Association="Self.FK__RegNumber__Regio__2FCF1A8A">
+            <End Role="RegionCodeCodes" EntitySet="RegionCodeCodes" />
+            <End Role="RegNumbers" EntitySet="RegNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegNumber__Vehic__2EDAF651" Association="Self.FK__RegNumber__Vehic__2EDAF651">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="RegNumbers" EntitySet="RegNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vehicles__CarCol__29221CFB" Association="Self.FK__Vehicles__CarCol__29221CFB">
+            <End Role="CarColors" EntitySet="CarColors" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vehicles__Driver__282DF8C2" Association="Self.FK__Vehicles__Driver__282DF8C2">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vehicles__Engine__2A164134" Association="Self.FK__Vehicles__Engine__2A164134">
+            <End Role="EngineTypes" EntitySet="EngineTypes" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vehicles__TypeOf__2B0A656D" Association="Self.FK__Vehicles__TypeOf__2B0A656D">
+            <End Role="TypeOfDrive" EntitySet="TypeOfDrive" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GIBDDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -141,6 +378,7 @@
           <Property Name="PhotoId" Type="Int32" Nullable="false" />
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Photos" Relationship="Self.FK__Drivers__PhotoId__6383C8BA" FromRole="Drivers" ToRole="Photos" />
+          <NavigationProperty Name="Vehicles" Relationship="GIBDDModel.FK__Vehicles__Driver__282DF8C2" FromRole="Drivers" ToRole="Vehicles" />
         </EntityType>
         <EntityType Name="Photos">
           <Key>
@@ -151,6 +389,7 @@
           <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Drivers" Relationship="Self.FK__Drivers__PhotoId__6383C8BA" FromRole="Photos" ToRole="Drivers" />
+          <NavigationProperty Name="Fines" Relationship="GIBDDModel.FK__Fines__PhotoId__05D8E0BE" FromRole="Photos" ToRole="Fines" />
         </EntityType>
         <EntityType Name="RegionCodeCodes">
           <Key>
@@ -160,6 +399,7 @@
           <Property Name="RegionCodeId" Type="Int32" Nullable="false" />
           <Property Name="Code" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RegionCodes" Relationship="Self.FK__RegionCod__Regio__6A30C649" FromRole="RegionCodeCodes" ToRole="RegionCodes" />
+          <NavigationProperty Name="RegNumbers" Relationship="GIBDDModel.FK__RegNumber__Regio__2FCF1A8A" FromRole="RegionCodeCodes" ToRole="RegNumbers" />
         </EntityType>
         <EntityType Name="RegionCodes">
           <Key>
@@ -221,7 +461,260 @@
             <End Role="RegionCodes" EntitySet="RegionCodes" />
             <End Role="RegionCodeCodes" EntitySet="RegionCodeCodes" />
           </AssociationSet>
+          <EntitySet Name="Fines" EntityType="GIBDDModel.Fines" />
+          <AssociationSet Name="FK__Fines__PhotoId__05D8E0BE" Association="GIBDDModel.FK__Fines__PhotoId__05D8E0BE">
+            <End Role="Photos" EntitySet="Photos" />
+            <End Role="Fines" EntitySet="Fines" />
+          </AssociationSet>
+          <EntitySet Name="FineStatuses" EntityType="GIBDDModel.FineStatuses" />
+          <EntitySet Name="FineStatusHistory" EntityType="GIBDDModel.FineStatusHistory" />
+          <AssociationSet Name="FK__FineStatu__FineI__114A936A" Association="GIBDDModel.FK__FineStatu__FineI__114A936A">
+            <End Role="Fines" EntitySet="Fines" />
+            <End Role="FineStatusHistory" EntitySet="FineStatusHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FineStatu__FineS__123EB7A3" Association="GIBDDModel.FK__FineStatu__FineS__123EB7A3">
+            <End Role="FineStatuses" EntitySet="FineStatuses" />
+            <End Role="FineStatusHistory" EntitySet="FineStatusHistory" />
+          </AssociationSet>
+          <EntitySet Name="CarColors" EntityType="GIBDDModel.CarColors" />
+          <EntitySet Name="RegNumbers" EntityType="GIBDDModel.RegNumbers" />
+          <EntitySet Name="TypeOfDrive" EntityType="GIBDDModel.TypeOfDrive" />
+          <EntitySet Name="Vehicles" EntityType="GIBDDModel.Vehicles" />
+          <AssociationSet Name="FK__Vehicles__CarCol__29221CFB" Association="GIBDDModel.FK__Vehicles__CarCol__29221CFB">
+            <End Role="CarColors" EntitySet="CarColors" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vehicles__Driver__282DF8C2" Association="GIBDDModel.FK__Vehicles__Driver__282DF8C2">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegNumber__Regio__2FCF1A8A" Association="GIBDDModel.FK__RegNumber__Regio__2FCF1A8A">
+            <End Role="RegionCodeCodes" EntitySet="RegionCodeCodes" />
+            <End Role="RegNumbers" EntitySet="RegNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegNumber__Vehic__2EDAF651" Association="GIBDDModel.FK__RegNumber__Vehic__2EDAF651">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="RegNumbers" EntitySet="RegNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vehicles__TypeOf__2B0A656D" Association="GIBDDModel.FK__Vehicles__TypeOf__2B0A656D">
+            <End Role="TypeOfDrive" EntitySet="TypeOfDrive" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <EntitySet Name="EngineTypes" EntityType="GIBDDModel.EngineTypes" />
+          <AssociationSet Name="FK__Vehicles__Engine__2A164134" Association="GIBDDModel.FK__Vehicles__Engine__2A164134">
+            <End Role="EngineTypes" EntitySet="EngineTypes" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Fines">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExternalId" Type="Int32" Nullable="false" />
+          <Property Name="CarNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LicenseNum" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PhotoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Photos" Relationship="GIBDDModel.FK__Fines__PhotoId__05D8E0BE" FromRole="Fines" ToRole="Photos" />
+          <NavigationProperty Name="FineStatusHistory" Relationship="GIBDDModel.FK__FineStatu__FineI__114A936A" FromRole="Fines" ToRole="FineStatusHistory" />
+        </EntityType>
+        <Association Name="FK__Fines__PhotoId__05D8E0BE">
+          <End Type="GIBDDModel.Photos" Role="Photos" Multiplicity="1" />
+          <End Type="GIBDDModel.Fines" Role="Fines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fines">
+              <PropertyRef Name="PhotoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FineStatuses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SendToFSSP" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="FineStatusHistory" Relationship="GIBDDModel.FK__FineStatu__FineS__123EB7A3" FromRole="FineStatuses" ToRole="FineStatusHistory" />
+        </EntityType>
+        <EntityType Name="FineStatusHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FineId" Type="Int32" Nullable="false" />
+          <Property Name="FineStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fines" Relationship="GIBDDModel.FK__FineStatu__FineI__114A936A" FromRole="FineStatusHistory" ToRole="Fines" />
+          <NavigationProperty Name="FineStatuses" Relationship="GIBDDModel.FK__FineStatu__FineS__123EB7A3" FromRole="FineStatusHistory" ToRole="FineStatuses" />
+        </EntityType>
+        <Association Name="FK__FineStatu__FineI__114A936A">
+          <End Type="GIBDDModel.Fines" Role="Fines" Multiplicity="1" />
+          <End Type="GIBDDModel.FineStatusHistory" Role="FineStatusHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FineStatusHistory">
+              <PropertyRef Name="FineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FineStatu__FineS__123EB7A3">
+          <End Type="GIBDDModel.FineStatuses" Role="FineStatuses" Multiplicity="1" />
+          <End Type="GIBDDModel.FineStatusHistory" Role="FineStatusHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FineStatuses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FineStatusHistory">
+              <PropertyRef Name="FineStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CarColors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="HexCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsMetallic" Type="Boolean" Nullable="false" />
+          <Property Name="NameEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColorNameEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Vehicles" Relationship="GIBDDModel.FK__Vehicles__CarCol__29221CFB" FromRole="CarColors" ToRole="Vehicles" />
+        </EntityType>
+        <EntityType Name="RegNumbers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleId" Type="Int32" Nullable="false" />
+          <Property Name="RegionCodeCodeId" Type="Int32" Nullable="false" />
+          <Property Name="Series" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="RegionCodeCodes" Relationship="GIBDDModel.FK__RegNumber__Regio__2FCF1A8A" FromRole="RegNumbers" ToRole="RegionCodeCodes" />
+          <NavigationProperty Name="Vehicles" Relationship="GIBDDModel.FK__RegNumber__Vehic__2EDAF651" FromRole="RegNumbers" ToRole="Vehicles" />
+        </EntityType>
+        <EntityType Name="TypeOfDrive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Vehicles" Relationship="GIBDDModel.FK__Vehicles__TypeOf__2B0A656D" FromRole="TypeOfDrive" ToRole="Vehicles" />
+        </EntityType>
+        <EntityType Name="Vehicles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverId" Type="Guid" Nullable="false" />
+          <Property Name="VINCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Manufacturer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Int32" Nullable="false" />
+          <Property Name="CarColorId" Type="Int32" Nullable="false" />
+          <Property Name="EngineTypeId" Type="Int32" Nullable="false" />
+          <Property Name="TypeOfDriveId" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CarColors" Relationship="GIBDDModel.FK__Vehicles__CarCol__29221CFB" FromRole="Vehicles" ToRole="CarColors" />
+          <NavigationProperty Name="Drivers" Relationship="GIBDDModel.FK__Vehicles__Driver__282DF8C2" FromRole="Vehicles" ToRole="Drivers" />
+          <NavigationProperty Name="RegNumbers" Relationship="GIBDDModel.FK__RegNumber__Vehic__2EDAF651" FromRole="Vehicles" ToRole="RegNumbers" />
+          <NavigationProperty Name="TypeOfDrive" Relationship="GIBDDModel.FK__Vehicles__TypeOf__2B0A656D" FromRole="Vehicles" ToRole="TypeOfDrive" />
+          <NavigationProperty Name="EngineTypes" Relationship="GIBDDModel.FK__Vehicles__Engine__2A164134" FromRole="Vehicles" ToRole="EngineTypes" />
+        </EntityType>
+        <Association Name="FK__Vehicles__CarCol__29221CFB">
+          <End Type="GIBDDModel.CarColors" Role="CarColors" Multiplicity="1" />
+          <End Type="GIBDDModel.Vehicles" Role="Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarColors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="CarColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vehicles__Driver__282DF8C2">
+          <End Type="GIBDDModel.Drivers" Role="Drivers" Multiplicity="1" />
+          <End Type="GIBDDModel.Vehicles" Role="Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="DriverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegNumber__Regio__2FCF1A8A">
+          <End Type="GIBDDModel.RegionCodeCodes" Role="RegionCodeCodes" Multiplicity="1" />
+          <End Type="GIBDDModel.RegNumbers" Role="RegNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegionCodeCodes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegNumbers">
+              <PropertyRef Name="RegionCodeCodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegNumber__Vehic__2EDAF651">
+          <End Type="GIBDDModel.Vehicles" Role="Vehicles" Multiplicity="1" />
+          <End Type="GIBDDModel.RegNumbers" Role="RegNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegNumbers">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vehicles__TypeOf__2B0A656D">
+          <End Type="GIBDDModel.TypeOfDrive" Role="TypeOfDrive" Multiplicity="1" />
+          <End Type="GIBDDModel.Vehicles" Role="Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfDrive">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="TypeOfDriveId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EngineTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocalizedName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vehicles" Relationship="GIBDDModel.FK__Vehicles__Engine__2A164134" FromRole="EngineTypes" ToRole="Vehicles" />
+        </EntityType>
+        <Association Name="FK__Vehicles__Engine__2A164134">
+          <End Type="GIBDDModel.EngineTypes" Role="EngineTypes" Multiplicity="1" />
+          <End Type="GIBDDModel.Vehicles" Role="Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EngineTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="EngineTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -295,6 +788,100 @@
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fines">
+            <EntityTypeMapping TypeName="GIBDDModel.Fines">
+              <MappingFragment StoreEntitySet="Fines">
+                <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LicenseNum" ColumnName="LicenseNum" />
+                <ScalarProperty Name="CarNum" ColumnName="CarNum" />
+                <ScalarProperty Name="ExternalId" ColumnName="ExternalId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FineStatuses">
+            <EntityTypeMapping TypeName="GIBDDModel.FineStatuses">
+              <MappingFragment StoreEntitySet="FineStatuses">
+                <ScalarProperty Name="SendToFSSP" ColumnName="SendToFSSP" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FineStatusHistory">
+            <EntityTypeMapping TypeName="GIBDDModel.FineStatusHistory">
+              <MappingFragment StoreEntitySet="FineStatusHistory">
+                <ScalarProperty Name="FineStatusId" ColumnName="FineStatusId" />
+                <ScalarProperty Name="FineId" ColumnName="FineId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarColors">
+            <EntityTypeMapping TypeName="GIBDDModel.CarColors">
+              <MappingFragment StoreEntitySet="CarColors">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ColorNameEN" ColumnName="ColorNameEN" />
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="IsMetallic" ColumnName="IsMetallic" />
+                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HexCode" ColumnName="HexCode" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegNumbers">
+            <EntityTypeMapping TypeName="GIBDDModel.RegNumbers">
+              <MappingFragment StoreEntitySet="RegNumbers">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="RegionCodeCodeId" ColumnName="RegionCodeCodeId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfDrive">
+            <EntityTypeMapping TypeName="GIBDDModel.TypeOfDrive">
+              <MappingFragment StoreEntitySet="TypeOfDrive">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicles">
+            <EntityTypeMapping TypeName="GIBDDModel.Vehicles">
+              <MappingFragment StoreEntitySet="Vehicles">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="TypeOfDriveId" ColumnName="TypeOfDriveId" />
+                <ScalarProperty Name="EngineTypeId" ColumnName="EngineTypeId" />
+                <ScalarProperty Name="CarColorId" ColumnName="CarColorId" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="VINCode" ColumnName="VINCode" />
+                <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EngineTypes">
+            <EntityTypeMapping TypeName="GIBDDModel.EngineTypes">
+              <MappingFragment StoreEntitySet="EngineTypes">
+                <ScalarProperty Name="LocalizedName" ColumnName="LocalizedName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,20 +12,19 @@ namespace APPLICATION
     using System;
     using System.Collections.Generic;
     
-    public partial class RegionCodeCodes
+    public partial class EngineTypes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RegionCodeCodes()
+        public EngineTypes()
         {
-            this.RegNumbers = new HashSet<RegNumbers>();
+            this.Vehicles = new HashSet<Vehicles>();
         }
     
         public int Id { get; set; }
-        public int RegionCodeId { get; set; }
-        public int Code { get; set; }
+        public string Name { get; set; }
+        public string LocalizedName { get; set; }
     
-        public virtual RegionCodes RegionCodes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RegNumbers> RegNumbers { get; set; }
+        public virtual ICollection<Vehicles> Vehicles { get; set; }
     }
 }

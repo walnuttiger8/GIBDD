@@ -18,6 +18,7 @@ namespace APPLICATION
         public Photos()
         {
             this.Drivers = new HashSet<Drivers>();
+            this.Fines = new HashSet<Fines>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,7 @@ namespace APPLICATION
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Drivers> Drivers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Fines> Fines { get; set; }
     }
 }

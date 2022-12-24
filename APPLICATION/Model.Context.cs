@@ -31,5 +31,13 @@ namespace APPLICATION
         public virtual DbSet<RegionCodeCodes> RegionCodeCodes { get; set; }
         public virtual DbSet<RegionCodes> RegionCodes { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Fines> Fines { get; set; }
+        public virtual DbSet<FineStatuses> FineStatuses { get; set; }
+        public virtual DbSet<FineStatusHistory> FineStatusHistory { get; set; }
+        public virtual DbSet<CarColors> CarColors { get; set; }
+        public virtual DbSet<RegNumbers> RegNumbers { get; set; }
+        public virtual DbSet<TypeOfDrive> TypeOfDrive { get; set; }
+        public virtual DbSet<Vehicles> Vehicles { get; set; }
+        public virtual DbSet<EngineTypes> EngineTypes { get; set; }
     }
 }

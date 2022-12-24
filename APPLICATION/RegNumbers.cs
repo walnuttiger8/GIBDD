@@ -12,20 +12,16 @@ namespace APPLICATION
     using System;
     using System.Collections.Generic;
     
-    public partial class RegionCodeCodes
+    public partial class RegNumbers
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RegionCodeCodes()
-        {
-            this.RegNumbers = new HashSet<RegNumbers>();
-        }
-    
         public int Id { get; set; }
-        public int RegionCodeId { get; set; }
-        public int Code { get; set; }
+        public int VehicleId { get; set; }
+        public int RegionCodeCodeId { get; set; }
+        public string Series { get; set; }
+        public int Number { get; set; }
+        public System.DateTime DateCreated { get; set; }
     
-        public virtual RegionCodes RegionCodes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RegNumbers> RegNumbers { get; set; }
+        public virtual RegionCodeCodes RegionCodeCodes { get; set; }
+        public virtual Vehicles Vehicles { get; set; }
     }
 }

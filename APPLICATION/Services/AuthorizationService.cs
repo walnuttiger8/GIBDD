@@ -10,7 +10,7 @@ namespace APPLICATION.Services
     public class AuthenticationFail : Exception { }
     public class TooManyAuthorizationAttempts : Exception { }
 
-    public class AuthorizationService
+    public class AuthorizationService : IDisposable
     {
         private const int _AUTHORIZATION_ATTEMPTS_THRESHOLD_MINUTES = 1;
         private const int _MAX_AUTHORIZATION_ATTEMPTS = 3;
@@ -82,6 +82,11 @@ namespace APPLICATION.Services
             sinceDate = sinceDate.AddMinutes(-_AUTHORIZATION_ATTEMPTS_THRESHOLD_MINUTES);
 
             return _db.AuthorizationAttempts.Where(x =>x.Login == login).Where(x => x.AttemptDate > sinceDate).ToList();
+        }
+
+        public void Dispose()
+        {
+            _db.Dispose();
         }
     }
 }

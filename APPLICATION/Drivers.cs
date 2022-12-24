@@ -14,6 +14,12 @@ namespace APPLICATION
     
     public partial class Drivers
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Drivers()
+        {
+            this.Vehicles = new HashSet<Vehicles>();
+        }
+    
         public System.Guid Id { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -29,5 +35,7 @@ namespace APPLICATION
         public string Remarks { get; set; }
     
         public virtual Photos Photos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Vehicles> Vehicles { get; set; }
     }
 }

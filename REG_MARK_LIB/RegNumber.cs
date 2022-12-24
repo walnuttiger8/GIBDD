@@ -91,7 +91,7 @@ namespace REG_MARK_LIB
             } catch (OverflowException)
             {
                 series += 1; // если не получилось, меняем серию. Тут тоже может быть OverflowException, но пока что пох
-                number = new RegNumberNumber(000);
+                number = new RegNumberNumber(001);
                 return new RegNumber(series, number, regNumber.RegionCode);
             }
         }

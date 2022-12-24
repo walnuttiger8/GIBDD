@@ -1,16 +1,14 @@
-﻿<Window x:Class="DESKTOP_APP.Views.AuthorizationView"
+﻿<Window x:Class="DESKTOP_APP.Views.ExportFSSPView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DESKTOP_APP.Views"
         mc:Ignorable="d"
-        Title="Окно авторизации" Height="450" Width="800" Background="Red" Closing="Window_Closing">
+        Title="ExportFSSPView" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            <TextBox x:Name="loginTextBox" Height="50" Width="200"/>
-            <PasswordBox x:Name="passwordBox" Height="50" Width="200"/>
-            <Button Name="authorizeButton" Click="authorizeButton_Click">Авторизация</Button>
+            <Button x:Name="exportButton" Content="Экспортировать данные в ФССП" Click="exportButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>
