@@ -33,6 +33,7 @@ namespace DESKTOP_APP.Views
             {
                 throw new ArgumentException();
             }
+            DataContext = _driver;
             InitializeBindings();
         }
 
@@ -66,12 +67,6 @@ namespace DESKTOP_APP.Views
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             _db.SaveChanges();
-        }
-
-        private void showImageButton_Click(object sender, RoutedEventArgs e)
-        {
-            var view = new PhotoView(_driver.PhotoId);
-            view.Show();
         }
     }
 }

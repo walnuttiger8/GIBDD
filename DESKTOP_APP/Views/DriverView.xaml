@@ -4,23 +4,109 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DESKTOP_APP.Views"
+        xmlns:converters="clr-namespace:DESKTOP_APP.Views.Converters"
         mc:Ignorable="d"
-        Title="DriverView" Height="450" Width="800">
+        Title="DriverView" Height="650" Width="800" Background="LightGreen">
+    <Window.Resources>
+        <converters:ImageConverter x:Key="imageConverter"/>
+
+        <Style TargetType="TextBox" x:Key="valueTextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+
+        <Style x:Key="valueLabel" TargetType="Label">
+            
+        </Style>
+    </Window.Resources>
     <Grid>
-        <StackPanel>
-            <TextBox x:Name="driverLastNameTextBox"/>
-            <TextBox x:Name="driverFirstNameTextBox"/>
-            <TextBox x:Name="driverMiddleNameTextBox"/>
-            <TextBox x:Name="driverPassportTextBox"/>
-            <TextBox x:Name="driverRegAddressTextBox"/>
-            <TextBox x:Name="driverLiveAddressTextBox"/>
-            <TextBox x:Name="driverPlaceOfWorkTextBox"/>
-            <TextBox x:Name="driverWorkPositionTextBox"/>
-            <TextBox x:Name="driverEmailTextBox"/>
-            <TextBox x:Name="driverRemarksTextBox"/>
-            <Button x:Name="showImageButton" Content="Показать изображение" Click="showImageButton_Click"/>
+        <StackPanel Margin="80 0">
+            <Image x:Name="driverImage" Source="{Binding Photos, Converter={StaticResource imageConverter}}" Width="120" Height="160"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Фамилия:" Style="{StaticResource valueLabel}"/>
+                <TextBox Grid.Column="1" x:Name="driverLastNameTextBox" Style="{StaticResource valueTextBox}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Имя:" Style="{StaticResource valueLabel}"/>
+                <TextBox Grid.Column="1" x:Name="driverFirstNameTextBox" Style="{StaticResource valueTextBox}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Отчество:" Style="{StaticResource valueLabel}"/>
+                <TextBox Grid.Column="1" x:Name="driverMiddleNameTextBox" Style="{StaticResource valueTextBox}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Паспорт:" Style="{StaticResource valueLabel}"/>
+                <TextBox Grid.Column="1" x:Name="driverPassportTextBox" Style="{StaticResource valueTextBox}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Адрес:" Style="{StaticResource valueLabel}"/>
+                <TextBox Grid.Column="1" x:Name="driverRegAddressTextBox" Style="{StaticResource valueTextBox}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Факт. адрес:" Style="{StaticResource valueLabel}"/>
+                <TextBox Grid.Column="1" x:Name="driverLiveAddressTextBox" Style="{StaticResource valueTextBox}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Место работы:" Style="{StaticResource valueLabel}"/>
+                <TextBox Grid.Column="1" x:Name="driverPlaceOfWorkTextBox" Style="{StaticResource valueTextBox}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Должность:" Style="{StaticResource valueLabel}"/>
+                <TextBox Grid.Column="1" x:Name="driverWorkPositionTextBox" Style="{StaticResource valueTextBox}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Почта:" Style="{StaticResource valueLabel}"/>
+                <TextBox Grid.Column="1" x:Name="driverEmailTextBox" Style="{StaticResource valueTextBox}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Заметки:" Style="{StaticResource valueLabel}"/>
+                <TextBox Grid.Column="1" x:Name="driverRemarksTextBox" Style="{StaticResource valueTextBox}"/>
+            </Grid>
+
             <Button x:Name="saveButton" Content="Сохранить" Click="saveButton_Click"/>
         </StackPanel>
-        
     </Grid>
 </Window>

@@ -30,6 +30,12 @@
         <AssociationConnector Association="GIBDDModel.FK__Vehicles__TypeOf__2B0A656D" />
         <EntityTypeShape EntityType="GIBDDModel.EngineTypes" Width="1.5" PointX="8.375" PointY="0.875" />
         <AssociationConnector Association="GIBDDModel.FK__Vehicles__Engine__2A164134" />
+        <EntityTypeShape EntityType="GIBDDModel.DriverLicenseCategories" Width="1.5" PointX="5.25" PointY="23.125" />
+        <EntityTypeShape EntityType="GIBDDModel.DriverLicenseCategory" Width="1.5" PointX="7.5" PointY="19" />
+        <EntityTypeShape EntityType="GIBDDModel.DriverLicenses" Width="1.5" PointX="5.25" PointY="18.625" />
+        <AssociationConnector Association="GIBDDModel.FK__DriverLic__Drive__4F47C5E3" />
+        <AssociationConnector Association="GIBDDModel.FK__DriverLic__Drive__4E53A1AA" />
+        <AssociationConnector Association="GIBDDModel.FK__DriverLic__Drive__46B27FE2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

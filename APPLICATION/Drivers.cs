@@ -18,6 +18,7 @@ namespace APPLICATION
         public Drivers()
         {
             this.Vehicles = new HashSet<Vehicles>();
+            this.DriverLicenses = new HashSet<DriverLicenses>();
         }
     
         public System.Guid Id { get; set; }
@@ -37,5 +38,7 @@ namespace APPLICATION
         public virtual Photos Photos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vehicles> Vehicles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DriverLicenses> DriverLicenses { get; set; }
     }
 }

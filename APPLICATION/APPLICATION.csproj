@@ -59,6 +59,15 @@
     <Compile Include="CarColors.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DriverLicenseCategories.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DriverLicenseCategory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DriverLicenses.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Drivers.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

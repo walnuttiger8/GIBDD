@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DESKTOP_APP.Views"
         mc:Ignorable="d"
-        Title="Просмотр автомобиля" Height="550" Width="800" Background="AliceBlue">
+        Title="Просмотр автомобиля" Height="600" Width="800" Background="AliceBlue" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="regNumberPart" x:Name="regNumberPart" TargetType="Label">
             <Setter Property="FontFamily" Value="Yu Gothic UI"/>

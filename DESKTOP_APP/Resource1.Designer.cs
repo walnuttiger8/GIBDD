@@ -73,6 +73,26 @@ namespace DESKTOP_APP {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap driver_license_template {
+            get {
+                object obj = ResourceManager.GetObject("driver_license_template", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gibdd_logo {
+            get {
+                object obj = ResourceManager.GetObject("gibdd_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap nomer {
             get {
                 object obj = ResourceManager.GetObject("nomer", resourceCulture);

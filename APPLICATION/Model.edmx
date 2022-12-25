@@ -28,6 +28,35 @@
           <Property Name="ColorNameEN" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="DriverLicenseCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DriverLicenseCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverLicenseId" Type="int" Nullable="false" />
+          <Property Name="DriverLicenseCategoryId" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DriverLicenses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LicenseDate" Type="datetime" Nullable="false" />
+          <Property Name="ExpireDate" Type="datetime" Nullable="false" />
+          <Property Name="Series" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Drivers">
           <Key>
             <PropertyRef Name="Id" />
@@ -155,6 +184,42 @@
           <Property Name="TypeOfDriveId" Type="int" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" />
         </EntityType>
+        <Association Name="FK__DriverLic__Drive__46B27FE2">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="DriverLicenses" Type="Self.DriverLicenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DriverLicenses">
+              <PropertyRef Name="DriverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DriverLic__Drive__4E53A1AA">
+          <End Role="DriverLicenses" Type="Self.DriverLicenses" Multiplicity="1" />
+          <End Role="DriverLicenseCategory" Type="Self.DriverLicenseCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DriverLicenses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DriverLicenseCategory">
+              <PropertyRef Name="DriverLicenseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DriverLic__Drive__4F47C5E3">
+          <End Role="DriverLicenseCategories" Type="Self.DriverLicenseCategories" Multiplicity="1" />
+          <End Role="DriverLicenseCategory" Type="Self.DriverLicenseCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DriverLicenseCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DriverLicenseCategory">
+              <PropertyRef Name="DriverLicenseCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Drivers__PhotoId__6383C8BA">
           <End Role="Photos" Type="Self.Photos" Multiplicity="1" />
           <End Role="Drivers" Type="Self.Drivers" Multiplicity="*" />
@@ -290,6 +355,9 @@
         <EntityContainer Name="Хранилище GIBDDModelContainer">
           <EntitySet Name="AuthorizationAttempts" EntityType="Self.AuthorizationAttempts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarColors" EntityType="Self.CarColors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DriverLicenseCategories" EntityType="Self.DriverLicenseCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DriverLicenseCategory" EntityType="Self.DriverLicenseCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DriverLicenses" EntityType="Self.DriverLicenses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Drivers" EntityType="Self.Drivers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EngineTypes" EntityType="Self.EngineTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fines" EntityType="Self.Fines" Schema="dbo" store:Type="Tables" />
@@ -302,6 +370,18 @@
           <EntitySet Name="TypeOfDrive" EntityType="Self.TypeOfDrive" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DriverLic__Drive__46B27FE2" Association="Self.FK__DriverLic__Drive__46B27FE2">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="DriverLicenses" EntitySet="DriverLicenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DriverLic__Drive__4E53A1AA" Association="Self.FK__DriverLic__Drive__4E53A1AA">
+            <End Role="DriverLicenses" EntitySet="DriverLicenses" />
+            <End Role="DriverLicenseCategory" EntitySet="DriverLicenseCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DriverLic__Drive__4F47C5E3" Association="Self.FK__DriverLic__Drive__4F47C5E3">
+            <End Role="DriverLicenseCategories" EntitySet="DriverLicenseCategories" />
+            <End Role="DriverLicenseCategory" EntitySet="DriverLicenseCategory" />
+          </AssociationSet>
           <AssociationSet Name="FK__Drivers__PhotoId__6383C8BA" Association="Self.FK__Drivers__PhotoId__6383C8BA">
             <End Role="Photos" EntitySet="Photos" />
             <End Role="Drivers" EntitySet="Drivers" />
@@ -379,6 +459,7 @@
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Photos" Relationship="Self.FK__Drivers__PhotoId__6383C8BA" FromRole="Drivers" ToRole="Photos" />
           <NavigationProperty Name="Vehicles" Relationship="GIBDDModel.FK__Vehicles__Driver__282DF8C2" FromRole="Drivers" ToRole="Vehicles" />
+          <NavigationProperty Name="DriverLicenses" Relationship="GIBDDModel.FK__DriverLic__Drive__46B27FE2" FromRole="Drivers" ToRole="DriverLicenses" />
         </EntityType>
         <EntityType Name="Photos">
           <Key>
@@ -504,6 +585,21 @@
           <AssociationSet Name="FK__Vehicles__Engine__2A164134" Association="GIBDDModel.FK__Vehicles__Engine__2A164134">
             <End Role="EngineTypes" EntitySet="EngineTypes" />
             <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <EntitySet Name="DriverLicenseCategories" EntityType="GIBDDModel.DriverLicenseCategories" />
+          <EntitySet Name="DriverLicenseCategory" EntityType="GIBDDModel.DriverLicenseCategory" />
+          <EntitySet Name="DriverLicenses" EntityType="GIBDDModel.DriverLicenses" />
+          <AssociationSet Name="FK__DriverLic__Drive__4F47C5E3" Association="GIBDDModel.FK__DriverLic__Drive__4F47C5E3">
+            <End Role="DriverLicenseCategories" EntitySet="DriverLicenseCategories" />
+            <End Role="DriverLicenseCategory" EntitySet="DriverLicenseCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DriverLic__Drive__4E53A1AA" Association="GIBDDModel.FK__DriverLic__Drive__4E53A1AA">
+            <End Role="DriverLicenses" EntitySet="DriverLicenses" />
+            <End Role="DriverLicenseCategory" EntitySet="DriverLicenseCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DriverLic__Drive__46B27FE2" Association="GIBDDModel.FK__DriverLic__Drive__46B27FE2">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="DriverLicenses" EntitySet="DriverLicenses" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Fines">
@@ -715,6 +811,76 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DriverLicenseCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DriverLicenseCategory" Relationship="GIBDDModel.FK__DriverLic__Drive__4F47C5E3" FromRole="DriverLicenseCategories" ToRole="DriverLicenseCategory" />
+        </EntityType>
+        <EntityType Name="DriverLicenseCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverLicenseId" Type="Int32" Nullable="false" />
+          <Property Name="DriverLicenseCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DriverLicenseCategories" Relationship="GIBDDModel.FK__DriverLic__Drive__4F47C5E3" FromRole="DriverLicenseCategory" ToRole="DriverLicenseCategories" />
+          <NavigationProperty Name="DriverLicenses" Relationship="GIBDDModel.FK__DriverLic__Drive__4E53A1AA" FromRole="DriverLicenseCategory" ToRole="DriverLicenses" />
+        </EntityType>
+        <EntityType Name="DriverLicenses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverId" Type="Guid" Nullable="false" />
+          <Property Name="LicenseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpireDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Series" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DriverLicenseCategory" Relationship="GIBDDModel.FK__DriverLic__Drive__4E53A1AA" FromRole="DriverLicenses" ToRole="DriverLicenseCategory" />
+          <NavigationProperty Name="Drivers" Relationship="GIBDDModel.FK__DriverLic__Drive__46B27FE2" FromRole="DriverLicenses" ToRole="Drivers" />
+        </EntityType>
+        <Association Name="FK__DriverLic__Drive__4F47C5E3">
+          <End Type="GIBDDModel.DriverLicenseCategories" Role="DriverLicenseCategories" Multiplicity="1" />
+          <End Type="GIBDDModel.DriverLicenseCategory" Role="DriverLicenseCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DriverLicenseCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DriverLicenseCategory">
+              <PropertyRef Name="DriverLicenseCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DriverLic__Drive__4E53A1AA">
+          <End Type="GIBDDModel.DriverLicenses" Role="DriverLicenses" Multiplicity="1" />
+          <End Type="GIBDDModel.DriverLicenseCategory" Role="DriverLicenseCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DriverLicenses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DriverLicenseCategory">
+              <PropertyRef Name="DriverLicenseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DriverLic__Drive__46B27FE2">
+          <End Type="GIBDDModel.Drivers" Role="Drivers" Multiplicity="1" />
+          <End Type="GIBDDModel.DriverLicenses" Role="DriverLicenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DriverLicenses">
+              <PropertyRef Name="DriverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -881,6 +1047,38 @@
               <MappingFragment StoreEntitySet="EngineTypes">
                 <ScalarProperty Name="LocalizedName" ColumnName="LocalizedName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DriverLicenseCategories">
+            <EntityTypeMapping TypeName="GIBDDModel.DriverLicenseCategories">
+              <MappingFragment StoreEntitySet="DriverLicenseCategories">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DriverLicenseCategory">
+            <EntityTypeMapping TypeName="GIBDDModel.DriverLicenseCategory">
+              <MappingFragment StoreEntitySet="DriverLicenseCategory">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DriverLicenseCategoryId" ColumnName="DriverLicenseCategoryId" />
+                <ScalarProperty Name="DriverLicenseId" ColumnName="DriverLicenseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DriverLicenses">
+            <EntityTypeMapping TypeName="GIBDDModel.DriverLicenses">
+              <MappingFragment StoreEntitySet="DriverLicenses">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="LicenseDate" ColumnName="LicenseDate" />
+                <ScalarProperty Name="DriverId" ColumnName="DriverId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

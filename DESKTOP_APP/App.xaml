@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:DESKTOP_APP"
              StartupUri="Views/AuthorizationView.xaml">
     <Application.Resources>
-         
+        <Style x:Key="RoadNumbersFont" TargetType="Label">
+            <Setter Property="FontFamily" Value="Fonts/RoadNumbers2_0.ttf #road_numbers"/>
+        </Style>
     </Application.Resources>
 </Application>

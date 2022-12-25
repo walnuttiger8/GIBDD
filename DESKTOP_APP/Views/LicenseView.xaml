@@ -1,0 +1,181 @@
+﻿<Window x:Class="DESKTOP_APP.Views.LicenseView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DESKTOP_APP.Views"
+        mc:Ignorable="d"
+        Title="Водительское удостверение" Height="500" Width="800" Background="PaleGoldenrod" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="licenseNumberLabel" TargetType="Label">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Foreground" Value="#5b1146"/>
+            <Setter Property="FontWeight" Value="ExtraBold"/>
+            <Setter Property="FontFamily" Value="GOST Type BU"/>
+            <Setter Property="Margin" Value="0 -4 0 0"/>
+        </Style>
+        <Style x:Key="licenseAccentTextBlock" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Yu Gothic UI"/>
+            <Setter Property="FontSize" Value="9"/>
+        </Style>
+        <Style x:Key="licenseTextBlock" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontFamily" Value="Yu Gothic UI"/>
+            <Setter Property="FontSize" Value="8"/>
+        </Style>
+        <Style x:Key="editValueLabel" TargetType="Label">
+            <Setter Property="Margin" Value="0, 0, 0, 10"/>
+        </Style>
+        <Style x:Key="editValueTextBox" TargetType="TextBox">
+            <Setter Property="Margin" Value="0, 0, 0, 10"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <Grid Width="400" Height="266" Margin="10">
+                <Grid.Background>
+                    <ImageBrush ImageSource="../Resources/driver_license_template.jpg" Stretch="Fill"/>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="85"/>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Image x:Name="driverImage" Grid.Row="1" Grid.Column="1"/>
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="6. " Grid.Row="0" Style="{StaticResource licenseNumberLabel}" Margin="0"/>
+                    <Label Content="7. " Grid.Row="1" Style="{StaticResource licenseNumberLabel}" Margin="0"/>
+                </Grid>
+                
+                <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="5 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="1. " Grid.Column="0" Grid.Row="0" Style="{StaticResource licenseNumberLabel}"/>
+                    <Label Content="2. " Grid.Column="0" Grid.Row="1" Style="{StaticResource licenseNumberLabel}"/>
+                    <Label Content="3. " Grid.Column="0" Grid.Row="2" Style="{StaticResource licenseNumberLabel}"/>
+                    <Label Content="4a) " Grid.Column="0" Grid.Row="3" Style="{StaticResource licenseNumberLabel}"/>
+                    <Label Content="4c) " Grid.Column="0" Grid.Row="4" Style="{StaticResource licenseNumberLabel}"/>
+                    <Label Content="5. " Grid.Column="0" Grid.Row="5" Style="{StaticResource licenseNumberLabel}"/>
+                    <Label Content="8. " Grid.Column="0" Grid.Row="6" Style="{StaticResource licenseNumberLabel}"/>
+                    <Label Content="9. " Grid.Column="0" Grid.Row="7" Style="{StaticResource licenseNumberLabel}"/>
+
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10.375"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="lastNameRUTextBloxk" Grid.Row="0" Text="ШАРИПОВ" Style="{StaticResource licenseAccentTextBlock}"/>
+                        <TextBlock x:Name="lastNameENTextBlock" Grid.Row="1" Text="SHARIPOV" Style="{StaticResource licenseTextBlock}"/>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="firstNameRUTextBloxk" Grid.Row="0" Text="БУЛАТ АЛЬБЕРТОВИЧ" Style="{StaticResource licenseAccentTextBlock}"/>
+                        <TextBlock x:Name="firstNameENTextBlock" Grid.Row="1" Text="BULAT ALBERTOVICH" Style="{StaticResource licenseTextBlock}"/>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="birthDateTextBloxk" Grid.Row="0" Text="10.06.2003" Style="{StaticResource licenseAccentTextBlock}" />
+                        <TextBlock x:Name="birthPlaseRUTextBloxk" Grid.Row="1" Text="РЕСП. ТАТАРСТАН" Style="{StaticResource licenseAccentTextBlock}"/>
+                        <TextBlock x:Name="birthPlaceENTextBlock" Grid.Row="2" Text="RESPUBLIKA TATARSTAN" Style="{StaticResource licenseTextBlock}"/>
+                    </Grid>
+                    <Grid Grid.Row="3" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="licenseDateTextBlock" Text="19.11.2022" Grid.Column="0" Style="{StaticResource licenseAccentTextBlock}"/>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="4b) " Grid.Column="0" Style="{StaticResource licenseNumberLabel}"/>
+                            <TextBlock x:Name="expireDateTextBlock" Text="19.11.2032" Grid.Column="1" Style="{StaticResource licenseAccentTextBlock}"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="4" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="gibddRUTextBloxk" Grid.Row="0" Text="ГИБДД 1611" Style="{StaticResource licenseAccentTextBlock}"/>
+                        <TextBlock x:Name="gibddENTextBlock" Grid.Row="1" Text="GIBDD 1611" Style="{StaticResource licenseTextBlock}"/>
+                    </Grid>
+                    <Grid Grid.Row="5" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="serNumTextBloxk" Grid.Row="0" Text="1111 111111" Style="{StaticResource licenseAccentTextBlock}" />
+
+                    </Grid>
+                    <Grid Grid.Row="6" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="issuePlaseRUTextBloxk" Grid.Row="0" Text="РЕСП. ТАТАРСТАН" Style="{StaticResource licenseAccentTextBlock}"/>
+                        <TextBlock x:Name="issuePlaceENTextBlock" Grid.Row="1" Text="RESP. TATARSTAN" Style="{StaticResource licenseTextBlock}"/>
+                    </Grid>
+                    <StackPanel x:Name="categoriesStackPanel" Grid.Column="1" Grid.Row="7" Orientation="Horizontal" VerticalAlignment="Top">
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Width="400">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Серия:" Style="{StaticResource editValueLabel}"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource editValueTextBox}" Text="{Binding Series, Mode=TwoWay}" TextChanged="TextBox_TextChanged"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Номер:" Style="{StaticResource editValueLabel}"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource editValueTextBox}" Text="{Binding Number, Mode=TwoWay}" TextChanged="TextBox_TextChanged"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Дата выдачи:" Style="{StaticResource editValueLabel}"/>
+                <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding LicenseDate, Mode=TwoWay}" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Дата закрытия:" Style="{StaticResource editValueLabel}"/>
+                <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding ExpireDate, Mode=TwoWay}" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

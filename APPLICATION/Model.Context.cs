@@ -39,5 +39,8 @@ namespace APPLICATION
         public virtual DbSet<TypeOfDrive> TypeOfDrive { get; set; }
         public virtual DbSet<Vehicles> Vehicles { get; set; }
         public virtual DbSet<EngineTypes> EngineTypes { get; set; }
+        public virtual DbSet<DriverLicenseCategories> DriverLicenseCategories { get; set; }
+        public virtual DbSet<DriverLicenseCategory> DriverLicenseCategory { get; set; }
+        public virtual DbSet<DriverLicenses> DriverLicenses { get; set; }
     }
 }

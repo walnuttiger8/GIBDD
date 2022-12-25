@@ -21,10 +21,18 @@ namespace DESKTOP_APP.Views
     public partial class AuthorizationView : Window
     {
         private readonly AuthorizationService _authorizationService;
+        private readonly bool _DEBUG = true;
+
         public AuthorizationView()
         {
             InitializeComponent();
             _authorizationService = new AuthorizationService();
+
+            if (_DEBUG)
+            {
+                loginTextBox.Text = "inspector";
+                passwordBox.Password = "inspector";
+            }
         }
 
         private void authorizeButton_Click(object sender, RoutedEventArgs e)
@@ -37,10 +45,12 @@ namespace DESKTOP_APP.Views
                 var user = _authorizationService.Auth(login, password);
 
                 //MessageBox.Show("Успешная авторизация!");
-                //var view = new DriverView(new Guid("05DA1F47-39FA-4ADF-A824-004223E51CF8"));
+                //var view = new LicenseView(new Guid("05da1f47-39fa-4adf-a824-004223e51cf8"));
                 //var view = new FineView(1);
                 //var view = new ExportFSSPView();
-                var view = new RegNumberView(1);
+                //var view = new RegNumberView(1);
+                //var view = new VehiclesListView();
+                var view = new DriversListView();
                 view.Show();
                 Close();
             }
