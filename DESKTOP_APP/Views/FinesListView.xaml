@@ -1,0 +1,64 @@
+﻿<Window x:Class="DESKTOP_APP.Views.FinesListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DESKTOP_APP.Views"
+        mc:Ignorable="d"
+        Title="Список штрафов" Height="450" Width="800" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="actionButton" TargetType="Button">
+            <Setter Property="Margin" Value="15"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="1" Margin="20" Text="Поиск по статусу:" HorizontalAlignment="Right"/>
+            <ComboBox x:Name="searchStatusComboBox" Grid.Column="2" Margin="20" SelectionChanged="searchStatusComboBox_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
+        <ListView x:Name="finesListView" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding CreateDate}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="createButton" Content="Выгрузить в ФССП" Style="{StaticResource actionButton }" Grid.Column="1" Click="createButton_Click"/>
+            <Button x:Name="readButton" Content="Просмотр" Style="{StaticResource actionButton }"  Grid.Column="2" Click="readButton_Click"/>
+            <Button x:Name="deleteButton" Content="Удалить" Style="{StaticResource actionButton}" Grid.Column="3" Click="deleteButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>

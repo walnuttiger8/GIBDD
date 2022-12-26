@@ -35,5 +35,11 @@ namespace DESKTOP_APP.Views
             var view = new VehiclesListView();
             view.Show();
         }
+
+        private void finesButton_Click(object sender, RoutedEventArgs e)
+        {
+            var view = new FinesListView();
+            view.Show();
+        }
     }
 }

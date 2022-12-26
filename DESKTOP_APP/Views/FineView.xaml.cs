@@ -35,7 +35,10 @@ namespace DESKTOP_APP.Views
             {
                 throw new ArgumentException();
             }
+            DataContext = _fine;
             InitializeBindings();
+
+            historyDataGrid.ItemsSource = _fine.FineStatusHistory;
         }
 
         private void InitializeBindings()
@@ -60,6 +63,7 @@ namespace DESKTOP_APP.Views
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             _db.SaveChanges();
+            DialogResult = true;
         }
 
         private void showImageButton_Click(object sender, RoutedEventArgs e)

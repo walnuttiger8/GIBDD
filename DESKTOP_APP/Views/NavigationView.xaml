@@ -18,7 +18,7 @@
             <Image Source="../Resources/gibdd_logo.png" Height="90"/>
             <Button x:Name="driversButton" Content="Водители" Click="driversButton_Click"/>
             <Button x:Name="vehiclesButton" Content="Транспортные средства" Click="vehiclesButton_Click"/>
-            <Button x:Name="finesButton" Content="Штрафы"/>
+            <Button x:Name="finesButton" Content="Штрафы" Click="finesButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -45,6 +45,12 @@ namespace DESKTOP_APP.Views
         {
             var driver = driversListView.SelectedItem as Drivers;
 
+            if (driver == null)
+            {
+                MessageBox.Show("Выберите водителя!");
+                return;
+            }
+
             var view = new DriverView(driver.Id);
             var result = view.ShowDialog();
 

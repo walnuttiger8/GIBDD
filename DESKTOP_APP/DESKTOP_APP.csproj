@@ -102,6 +102,7 @@
     <Compile Include="Views\ChooseCategoriesView.xaml.cs">
       <DependentUpon>ChooseCategoriesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Converters\FineStatusToNameConverter.cs" />
     <Compile Include="Views\Converters\ImageConverter.cs" />
     <Compile Include="Views\CreateDriverView.xaml.cs">
       <DependentUpon>CreateDriverView.xaml</DependentUpon>
@@ -111,6 +112,9 @@
     </Compile>
     <Compile Include="Views\DriversListView.xaml.cs">
       <DependentUpon>DriversListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FinesListView.xaml.cs">
+      <DependentUpon>FinesListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LicenseView.xaml.cs">
       <DependentUpon>LicenseView.xaml</DependentUpon>
@@ -168,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DriversListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FinesListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
