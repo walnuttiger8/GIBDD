@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 
 namespace DESKTOP_APP.Views
 {
+    public class DriverNotFoundException : Exception { }
+    public class LicenseNotFoundException : Exception { }
     /// <summary>
     /// Логика взаимодействия для LicenseView.xaml
     /// </summary>
@@ -33,7 +35,7 @@ namespace DESKTOP_APP.Views
 
             if (_driver == null)
             {
-                throw new ArgumentException();
+                throw new DriverNotFoundException();
             }
             _license = _driver.DriverLicenses.FirstOrDefault();
 
@@ -41,7 +43,7 @@ namespace DESKTOP_APP.Views
 
             if (_license == null)
             {
-                throw new ArgumentException();
+                throw new LicenseNotFoundException();
             }
 
             InitializeCategories();

@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DESKTOP_APP.Views"
         mc:Ignorable="d"
-        Title="Окно авторизации" Height="450" Width="800" Background="Red" Closing="Window_Closing">
+        Title="Окно авторизации" Height="450" Width="800" Background="AliceBlue" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
-        <StackPanel>
-            <TextBox x:Name="loginTextBox" Height="50" Width="200"/>
-            <PasswordBox x:Name="passwordBox" Height="50" Width="200"/>
-            <Button Name="authorizeButton" Click="authorizeButton_Click">Авторизация</Button>
+        <StackPanel Margin="80">
+            <Image Source="../Resources/gibdd_logo.png" Height="90"/>
+            <TextBox x:Name="loginTextBox" Height="30" Width="200" Margin="10"/>
+            <PasswordBox x:Name="passwordBox" Height="30" Width="200" Margin="10"/>
+            <Button Name="authorizeButton" Click="authorizeButton_Click" Width="200" Height="30">Авторизация</Button>
         </StackPanel>
     </Grid>
 </Window>

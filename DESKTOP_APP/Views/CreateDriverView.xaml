@@ -1,15 +1,12 @@
-﻿<Window x:Class="DESKTOP_APP.Views.DriverView"
+﻿<Window x:Class="DESKTOP_APP.Views.CreateDriverView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DESKTOP_APP.Views"
-        xmlns:converters="clr-namespace:DESKTOP_APP.Views.Converters"
         mc:Ignorable="d"
-        Title="Карточка водителя" Height="750" Width="800" Background="LightGreen" ResizeMode="NoResize">
+        Title="Добавление водителя" Height="600" Width="800" Background="LightYellow" ResizeMode="NoResize">
     <Window.Resources>
-        <converters:ImageConverter x:Key="imageConverter"/>
-
         <Style TargetType="TextBox" x:Key="valueTextBox">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="FontSize" Value="16"/>
@@ -18,13 +15,11 @@
         </Style>
 
         <Style x:Key="valueLabel" TargetType="Label">
-            
+
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel Margin="80 0">
-            <Image x:Name="driverImage" Source="{Binding Photos, Converter={StaticResource imageConverter}}" Width="120" Height="160"/>
-
+        <StackPanel Margin="100 50">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
@@ -48,6 +43,14 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="Отчество:" Style="{StaticResource valueLabel}"/>
                 <TextBox Grid.Column="1" x:Name="driverMiddleNameTextBox" Style="{StaticResource valueTextBox}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Телефон:" Style="{StaticResource valueLabel}"/>
+                <TextBox Grid.Column="1" x:Name="phoneMobileTextBox" Style="{StaticResource valueTextBox}"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -105,21 +108,7 @@
                 <Label Grid.Column="0" Content="Заметки:" Style="{StaticResource valueLabel}"/>
                 <TextBox Grid.Column="1" x:Name="driverRemarksTextBox" Style="{StaticResource valueTextBox}"/>
             </Grid>
-
-            <Label Content="Список принадлежащих ТС:"/>
-            <ListView x:Name="vehiclesListView" MinHeight="50" MaxHeight="100">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding VINCode}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Button x:Name="showVehicleButton" Content="Показать ТС" Click="showVehicleButton_Click"/>
-            <Button x:Name="createVehicleButton" Content="Добавить ТС" Click="createVehicleButton_Click"/>
-
-            <Button x:Name="showLicenseButton" Content="Показать лицензию" Margin="0 10" Click="showLicenseButton_Click"/>
-
-            <Button x:Name="saveButton" Content="Сохранить" Click="saveButton_Click" Margin="20"/>
+            <Button Content="Добавить" x:Name="createButton" Margin="30" Click="createButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

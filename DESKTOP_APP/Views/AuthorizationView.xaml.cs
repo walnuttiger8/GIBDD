@@ -43,14 +43,7 @@ namespace DESKTOP_APP.Views
             try
             {
                 var user = _authorizationService.Auth(login, password);
-
-                //MessageBox.Show("Успешная авторизация!");
-                //var view = new LicenseView(new Guid("05da1f47-39fa-4adf-a824-004223e51cf8"));
-                //var view = new FineView(1);
-                //var view = new ExportFSSPView();
-                //var view = new RegNumberView(1);
-                //var view = new VehiclesListView();
-                var view = new DriversListView();
+                var view = new NavigationView();
                 view.Show();
                 Close();
             }

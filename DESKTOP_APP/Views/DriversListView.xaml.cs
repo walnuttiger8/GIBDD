@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,13 @@ namespace DESKTOP_APP.Views
 
         private void createButton_Click(object sender, RoutedEventArgs e)
         {
+            var view = new CreateDriverView();
+            var result = view.ShowDialog();
 
+            if (result == true)
+            {
+                driversListView.ItemsSource = _db.Drivers.ToList();
+            }
         }
 
         private void readButton_Click(object sender, RoutedEventArgs e)
@@ -39,17 +46,45 @@ namespace DESKTOP_APP.Views
             var driver = driversListView.SelectedItem as Drivers;
 
             var view = new DriverView(driver.Id);
-            view.Show();
+            var result = view.ShowDialog();
+
+            if (result == true)
+            {
+                driversListView.ItemsSource = _db.Drivers.ToList();
+            }
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            var result = MessageBox.Show("Вы уверены?", "Подтверждение удаления", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                var result2 = MessageBox.Show("Вы точно уверены?", "Окончательное подтверждение удаления", MessageBoxButton.YesNo);
+                if (result2 == MessageBoxResult.Yes)
+                {
+                    MessageBox.Show("Удалено");
+                    var driver = driversListView.SelectedItem as Drivers;
+                    if (driver == null)
+                    {
+                        MessageBox.Show("Выберите водителя!");
+                        return;
+                    }
+
+                    _db.Drivers.Remove(driver);
+                    _db.Entry(driver).State = System.Data.Entity.EntityState.Deleted;
+                    _db.SaveChanges();
+                    driversListView.ItemsSource = _db.Drivers.ToList();
+
+                }
+            }
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var searchQuery = searchTextBox.Text;
+            driversListView.ItemsSource = _db.Drivers.Where(x =>
+                x.FirstName.Contains(searchQuery) | x.LastName.Contains(searchQuery) | x.MiddleName.Contains(searchQuery)
+            ).ToList();
         }
     }
 }

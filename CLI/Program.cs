@@ -13,12 +13,18 @@ namespace CLI
         static void Main(string[] args)
         {
             var n1 = new RegNumber(new RegNumberSeries("aaa"), new RegNumberNumber(000), 1);
-            var n2 = new RegNumber(new RegNumberSeries("bbb"), new RegNumberNumber(999), 1);
+            var n2 = new RegNumber(new RegNumberSeries("mmm"), new RegNumberNumber(999), 1);
+
+            var rnd = new Random();
 
 
             foreach (var item in RegNumber.Range(n1, n2))
             {
-                Console.WriteLine(item);
+                if (rnd.Next(1, 1000) == 4)
+                {
+                    Console.WriteLine(item.Series.ToString() + " " + item.Number.ToString());
+                }
+                
             }
 
             Console.ReadKey();

@@ -46,7 +46,14 @@ namespace DESKTOP_APP.Views
 
         private void createButton_Click(object sender, RoutedEventArgs e)
         {
+            var view = new CreateVehicleView();
 
+            if (view.ShowDialog() == true)
+            {
+                Vehicles = _db.Vehicles.ToList();
+
+                vehiclesListView.ItemsSource = Vehicles;
+            }
         }
 
         private List<Vehicles> SearchVehicles(string vin)
@@ -76,14 +83,28 @@ namespace DESKTOP_APP.Views
                 if (result2 == MessageBoxResult.Yes)
                 {
                     MessageBox.Show("Удалено");
-                    // TODO: Добавить удаление
+                    
+                    var vehicle = vehiclesListView.SelectedItem as Vehicles;
+                    if (vehicle == null)
+                    {
+                        MessageBox.Show("ТС не выбрано");
+                        return;
+                    }
+
+                    _db.Vehicles.Remove(vehicle);
+                    _db.Entry(vehicle).State = EntityState.Deleted;
+                    _db.SaveChanges();
+                    vehiclesListView.ItemsSource = _db.Vehicles.ToList();
                 }
             }
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var searchQuery = searchTextBox.Text;
+            vehiclesListView.ItemsSource = _db.Vehicles.Where(x =>
+                x.VINCode.Contains(searchQuery)
+            ).ToList();
         }
     }
 }
