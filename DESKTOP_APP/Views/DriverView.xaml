@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DESKTOP_APP.Views"
         xmlns:converters="clr-namespace:DESKTOP_APP.Views.Converters"
         mc:Ignorable="d"
-        Title="Карточка водителя" Height="750" Width="800" Background="LightGreen" ResizeMode="NoResize">
+        Title="Карточка водителя" Height="750" Width="800" Background="LightGreen" ResizeMode="NoResize" Icon="../Resources/gibdd_logo.png">
     <Window.Resources>
         <converters:ImageConverter x:Key="imageConverter"/>
 

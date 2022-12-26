@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DESKTOP_APP.Views"
         mc:Ignorable="d"
-        Title="Выбор категорий" Height="250" Width="400" ResizeMode="NoResize" Background="AliceBlue">
+        Title="Выбор категорий" Height="250" Width="400" ResizeMode="NoResize" Background="AliceBlue" Icon="../Resources/gibdd_logo.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>

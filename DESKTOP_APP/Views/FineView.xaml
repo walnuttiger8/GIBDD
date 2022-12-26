@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DESKTOP_APP.Views"
         xmlns:converters="clr-namespace:DESKTOP_APP.Views.Converters"
         mc:Ignorable="d"
-        Title="Просмотр штрафа" Height="650" Width="800" ResizeMode="NoResize" Background="AliceBlue">
+        Title="Просмотр штрафа" Height="650" Width="800" ResizeMode="NoResize" Background="AliceBlue" Icon="../Resources/gibdd_logo.png">
     <Window.Resources>
         <converters:ImageConverter x:Key="imageConverter"/>
         <converters:FineStatusToNameConverter x:Key="fineStatusToNameConverter"/>

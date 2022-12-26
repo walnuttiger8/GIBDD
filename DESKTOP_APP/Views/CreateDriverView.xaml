@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DESKTOP_APP.Views"
         mc:Ignorable="d"
-        Title="Добавление водителя" Height="600" Width="800" Background="LightYellow" ResizeMode="NoResize">
+        Title="Добавление водителя" Height="600" Width="800" Background="LightYellow" ResizeMode="NoResize" Icon="../Resources/gibdd_logo.png">
     <Window.Resources>
         <Style TargetType="TextBox" x:Key="valueTextBox">
             <Setter Property="Margin" Value="5"/>

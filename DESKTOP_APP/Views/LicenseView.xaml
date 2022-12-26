@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DESKTOP_APP.Views"
         mc:Ignorable="d"
-        Title="Водительское удостверение" Height="500" Width="800" Background="PaleGoldenrod" ResizeMode="NoResize">
+        Title="Водительское удостверение" Height="500" Width="800" Background="PaleGoldenrod" ResizeMode="NoResize" Icon="../Resources/gibdd_logo.png">
     <Window.Resources>
         <Style x:Key="licenseNumberLabel" TargetType="Label">
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
